@@ -1,0 +1,38 @@
+.root{
+    -fx-background-color: #eeeeee;
+}
+#output{
+    -fx-control-inner-background: #eeeeee;
+    -fx-border-color: #333333;
+    -fx-text-fill: #111111;
+    -fx-prompt-text-fill: #555555;
+}
+.text-area{
+    -fx-control-inner-background: #cccccc;
+    -fx-border-color: #66ff66;
+}
+.label{
+    -fx-text-fill: #111111;
+}
+.check-box{
+    -fx-text-fill: #111111;
+}
+
+.menu-bar, .context-menu{
+    -fx-background-color: #dddddd;
+    -fx-border-color: #aaaaaa;
+}
+.context-menu .separator .line{
+    -fx-border-color: #bbbbbb;
+}
+.menu .label{
+    -fx-text-fill: #111111;
+}
+.button{
+    -fx-background-color: #555555;
+    -fx-text-fill: #cccccc;
+    -fx-skin: "application.AnimatedButtonSkin";
+}
+.button: disabled{
+    -fx-opacity: 0.6;
+}

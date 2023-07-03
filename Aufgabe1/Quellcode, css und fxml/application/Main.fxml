@@ -1,0 +1,163 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.CheckBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Menu?>
+<?import javafx.scene.control.MenuBar?>
+<?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.control.RadioMenuItem?>
+<?import javafx.scene.control.SeparatorMenuItem?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.ToggleGroup?>
+<?import javafx.scene.effect.InnerShadow?>
+<?import javafx.scene.effect.Reflection?>
+<?import javafx.scene.input.KeyCodeCombination?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1280.0" stylesheets="@dark_theme.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.Controller">
+   <children>
+      <TextField fx:id="lineField" alignment="CENTER" disable="true" focusTraversable="false" layoutX="955.0" layoutY="2.0" onAction="#onLineEnterKey" prefWidth="80.0">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </TextField>
+      <TextArea fx:id="gapTextArea" layoutY="35.0" prefHeight="380.0" prefWidth="635.0" promptText="Bereich für den Lückentext">
+         <font>
+            <Font name="Tahoma" size="16.0" />
+         </font>
+      </TextArea>
+      <MenuBar fx:id="menu">
+        <menus>
+          <Menu mnemonicParsing="false" text="Lückentext">
+               <items>
+                  <MenuItem onAction="#loadGapText" text="Öffnen">
+                     <accelerator>
+                        <KeyCodeCombination alt="UP" code="O" control="DOWN" meta="UP" shift="UP" shortcut="UP" />
+                     </accelerator>
+                  </MenuItem>
+                  <MenuItem fx:id="gtSaveItem" disable="true" onAction="#saveGapText" text="Speichern">
+                     <accelerator>
+                        <KeyCodeCombination alt="UP" code="S" control="DOWN" meta="UP" shift="UP" shortcut="UP" />
+                     </accelerator>
+                  </MenuItem>
+                  <MenuItem fx:id="gtSaveAtItem" mnemonicParsing="false" onAction="#saveGapTextAt" text="Speichern unter">
+                     <accelerator>
+                        <KeyCodeCombination alt="DOWN" code="S" control="UP" meta="UP" shift="UP" shortcut="UP" />
+                     </accelerator>
+                  </MenuItem>
+                  <SeparatorMenuItem mnemonicParsing="false" />
+                  <MenuItem fx:id="gtCloseItem" disable="true" onAction="#closeGapText" text="Schließen">
+                     <accelerator>
+                        <KeyCodeCombination alt="UP" code="ESCAPE" control="ANY" meta="UP" shift="UP" shortcut="UP" />
+                     </accelerator>
+                  </MenuItem>
+               </items>
+          </Menu>
+          <Menu mnemonicParsing="false" text="Suchtext">
+               <items>
+                  <MenuItem onAction="#loadBaseText" text="Öffnen">
+                     <accelerator>
+                        <KeyCodeCombination alt="UP" code="O" control="DOWN" meta="UP" shift="DOWN" shortcut="UP" />
+                     </accelerator></MenuItem>
+                  <MenuItem fx:id="btSaveItem" disable="true" onAction="#saveBaseText" text="Speichern">
+                     <accelerator>
+                        <KeyCodeCombination alt="UP" code="S" control="DOWN" meta="UP" shift="DOWN" shortcut="UP" />
+                     </accelerator></MenuItem>
+                  <MenuItem fx:id="btSaveAtItem" mnemonicParsing="false" onAction="#saveBaseTextAt" text="Speichern unter">
+                     <accelerator>
+                        <KeyCodeCombination alt="DOWN" code="S" control="UP" meta="UP" shift="DOWN" shortcut="UP" />
+                     </accelerator>
+                  </MenuItem>
+                  <SeparatorMenuItem mnemonicParsing="false" />
+                  <MenuItem fx:id="btCloseItem" disable="true" onAction="#closeBaseText" text="Schließen">
+                     <accelerator>
+                        <KeyCodeCombination alt="UP" code="Q" control="DOWN" meta="UP" shift="UP" shortcut="UP" />
+                     </accelerator></MenuItem>
+               </items>
+          </Menu>
+           <Menu mnemonicParsing="false" text="Design">
+              <RadioMenuItem mnemonicParsing="false" onAction="#switchToDarkTheme" selected="true" text="Dark-Theme">
+                 <toggleGroup>
+                    <ToggleGroup fx:id="themeSelectionGroup" />
+                 </toggleGroup>
+              </RadioMenuItem>
+              <RadioMenuItem mnemonicParsing="false" onAction="#switchToLightTheme" text="Light-Theme" toggleGroup="$themeSelectionGroup" />
+           </Menu>
+            <Menu mnemonicParsing="false" text="Speicher-Optionen">
+              <items>
+                  <RadioMenuItem mnemonicParsing="false" onAction="#onSaveAskSelected" selected="true" text="Nachfragen">
+                     <toggleGroup>
+                        <ToggleGroup fx:id="saveOptionGroup" />
+                     </toggleGroup>
+                  </RadioMenuItem>
+                  <RadioMenuItem mnemonicParsing="false" onAction="#onSaveAlwaysSelected" text="Immer speichern" toggleGroup="$saveOptionGroup" />
+                  <RadioMenuItem mnemonicParsing="false" onAction="#onSaveNeverSelected" text="Nie speichern" toggleGroup="$saveOptionGroup" />
+              </items>
+            </Menu>
+        </menus>
+      </MenuBar>
+      <TextArea fx:id="baseTextArea" layoutX="645.0" layoutY="35.0" prefHeight="380.0" prefWidth="635.0" promptText="Bereich für den Suchtext">
+         <padding>
+            <Insets top="1.0" />
+         </padding>
+         <font>
+            <Font name="Tahoma" size="16.0" />
+         </font>
+      </TextArea>
+      <TextArea fx:id="output" editable="false" layoutY="445.0" prefHeight="276.0" prefWidth="1280.0" promptText="Ausgabe">
+         <font>
+            <Font name="Consolas" size="14.0" />
+         </font>
+         <effect>
+            <InnerShadow choke="0.12" height="59.11" radius="26.122500000000002" width="47.38" />
+         </effect>
+      </TextArea>
+      <Button alignment="CENTER" layoutX="1200.0" layoutY="435.0" mnemonicParsing="false" onAction="#clearOutput" text="Leeren">
+         <font>
+            <Font size="14.0" />
+         </font>
+         <effect>
+            <Reflection fraction="0.51" topOpacity="0.32" />
+         </effect>
+      </Button>
+      <Button fx:id="bNextIndex" disable="true" layoutX="780.0" layoutY="2.0" mnemonicParsing="false" onAction="#onNextIndex" text="Nächster Index">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Button>
+      <Button fx:id="bPreviousIndex" disable="true" layoutX="645.0" layoutY="2.0" mnemonicParsing="false" onAction="#onPreviousIndex" text="Vorheriger Index">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Button>
+      <Label layoutX="910.0" layoutY="5.0" text="Zeile:">
+         <font>
+            <Font size="16.0" />
+         </font>
+      </Label>
+      <Label fx:id="gapTextLabel" alignment="CENTER" layoutX="5.0" layoutY="422.0" prefWidth="630.0">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Label>
+      <Label fx:id="baseTextLabel" alignment="CENTER" layoutX="645.0" layoutY="422.0" prefWidth="630.0">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Label>
+      <Button fx:id="bSearch" alignment="CENTER" disable="true" layoutX="400.0" layoutY="2.0" mnemonicParsing="false" onAction="#findGtCompletions" text="Vervollständigungen finden">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Button>
+      <CheckBox fx:id="cbMatchCase" layoutX="1050.0" layoutY="6.0" mnemonicParsing="false" onAction="#onMatchCaseChange" text="Groß-Klein-Schreibung beachten">
+         <font>
+            <Font size="13.0" />
+         </font>
+      </CheckBox>
+   </children>
+</AnchorPane>
